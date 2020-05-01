@@ -10,9 +10,9 @@ public class Main {
 
         int year;
 
-        int i = 0;
+        int input;
 
-        int a = 1;
+        int answer;
 
         Scanner keyboard = new Scanner(System.in);
 
@@ -26,17 +26,20 @@ public class Main {
             System.out.println("Saturday's child works hard for a living,");
             System.out.println("But the child born on the Sabbath Day,");
             System.out.println("Is fair and wise and good in every way.");
-
-            System.out.println("What year were you born?");
+            System.out.println(" ");
+            System.out.print("What year were you born?: ");
             year = keyboard.nextInt();
-            System.out.println("What month were you born?");
+            System.out.println(" ");
+            System.out.print("What month were you born?: ");
             month = keyboard.nextInt();
-            System.out.println("What is the day that you were born?");
+            System.out.println(" ");
+            System.out.print("What is the day that you were born?: ");
             day = keyboard.nextInt();
+            System.out.println(" ");
 
-            int answer = amountOfDaysInMonth(month, year);
-            System.out.println("There are " + answer + " days in the month");
-
+            input = amountOfDaysInMonth(month, year);
+            System.out.println("There are " + input + " days in the month");
+            System.out.println(" ");
 
             int answer2 = ZellerCongurence(month, year, day);
             System.out.println(answer2);
@@ -44,84 +47,39 @@ public class Main {
             String answer3 = MonthPoem(answer2);
             System.out.println(answer3);
 
-            a++;
-
             System.out.println(" ");
-            System.out.println("Do you want to go again? \"yes\" or \"no\".");
+            System.out.println("Do you want to go again? \"1\" for yes, \"2\" for no!");
+            System.out.print(">");
 
-            String input = keyboard.nextLine();
+            answer = keyboard.nextInt();
 
-            if(input.equalsIgnoreCase("yes")) {
+        }
 
-                i++;
-
-            }
-
-            else if(input.equalsIgnoreCase("no")) {
-
-                a++;
-                System.out.println("Thank You For Playing!");
-
-            }
-
-            else {
-
-                System.out.println(" ");
-
-                System.out.println("You did not follow directions!");
-
-                System.out.println(" ");
-
-                System.out.println("Thank You For Playing!");
-
-            }
-
-        } while (i >= a);
+        while (answer == 1);
 
     }
 
     public static int amountOfDaysInMonth(int month, int year) {
         switch (month) {
-            //January
-            case 1:
-                return 31;
-            //February
-            case 2:
-                if ((year % 100 == 0 && year % 400 == 0) || (!(year % 100 == 0) && year % 4 == 0)) {
-                    return 29;
-                }   else { return 28; }
-                //March
-            case 3:
-                return 31;
-            //April
-            case 4:
-                return 30;
-            //May
-            case 5:
-                return 31;
-            //June
-            case 6:
-                return 30;
-            //July
-            case 7:
-                return 31;
-            //August
-            case 8:
-                return 31;
-            //September
-            case 9:
-                return 30;
-            //October
-            case 10:
-                return 31;
-            //November
-            case 11:
-                return 30;
-            //December
+            case 1: case 3:
+            case 5: case 8:
+            case 9: case 10:
             case 12:
                 return 31;
+
+
+            case 4: case 6:
+            case 7: case 11:
+                return 30;
+
+            default:
+                if ((year % 100 == 0 && year % 400 == 0) || (!(year % 100 == 0) && year % 4 ==0)) {
+                    return 29;
+                } else {
+                    return 28;
+                }
+            }
         }
-    }
 
     public static int ZellerCongurence(int month, int year, int day) {
 
